@@ -1,7 +1,4 @@
----
-# handlers file for test_project
-handlers:
-  - name: Restart Nginx
-    service:
-      name: nginx
-      state: restarted
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
