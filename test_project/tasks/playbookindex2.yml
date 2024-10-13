@@ -1,0 +1,29 @@
+---
+- name: Install Apache and Upload My Web Page
+  hosts: nfsserver
+  become: yes
+
+  vars:
+    source_folder: ./MyWebSite2
+    destin_folder: /var/www/html
+
+
+  tasks:
+  - name: Install Apache Web Server
+    yum: name=httpd state=latest
+  
+  - name: Generate INDEX.HTML file
+    template: src={{ source_folder }}/index.j2 dest={{ destin_folder }}/index.html mode=0555
+    notify: 
+      - Restart Apache
+
+# - name: Copy MyHomePage to Servers
+#   copy: src={{ sourse_file }} dest={{ destin_file }} mode=0555
+#   notify: Restart Apache
+
+  - name: Start WebServer and make it enable on boot
+    service: name=httpd state=started enabled=yes
+  
+  handlers:
+  - name: Restart Apache
+    service: name=httpd state=restarted
