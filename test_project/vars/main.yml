@@ -1,2 +1,5 @@
 ---
 # vars file for test_project
+vars:
+  source_folder: ./MyWebSite2
+  destin_folder: /var/www/html
