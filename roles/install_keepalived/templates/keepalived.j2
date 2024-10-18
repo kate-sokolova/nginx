@@ -1,0 +1,14 @@
+vrrp_instance VI_1 {
+    state {{ keepalived_state }}
+    interface ens33                 # Укажи сетевой интерфейс (может отличаться)
+    virtual_router_id 51           # Уникальный ID VRRP, должен быть одинаковым на обоих серверах
+    priority {{ priority }}
+    advert_int 1                   # Интервал отправки VRRP пакетов
+    authentication {
+        auth_type PASS
+        auth_pass 12345            # Пароль для аутентификации VRRP пакетов, одинаковый на обоих серверах
+    }
+    virtual_ipaddress {
+        192.168.1.85              # Виртуальный IP (VIP), который будет "переезжать"
+    }
+}

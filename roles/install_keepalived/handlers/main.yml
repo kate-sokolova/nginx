@@ -1,2 +1,4 @@
----
-# handlers file for install_keepalived
+- name: Restart keepalived
+  service:
+    name: keepalived
+    state: restarted
