@@ -1,0 +1,17 @@
+- name: Install HAProxy Server
+  dnf:
+    name: haproxy
+    state: present
+
+- name: replace config file
+  template:
+    src: haproxy.cfg
+    dest: /etc/haproxy
+  notify:
+    - Restart haproxy
+
+- name: Start WebServer and make it enable on boot
+  service:
+    name: haproxy
+    state: started
+    enabled: yes
