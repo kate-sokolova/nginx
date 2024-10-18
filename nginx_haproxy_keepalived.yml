@@ -1,3 +1,7 @@
 - hosts: nginx
   roles:
     - install_nginx
+
+- hosts: haproxy
+  roles:
+    - install_haproxy
