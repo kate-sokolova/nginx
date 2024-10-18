@@ -5,3 +5,4 @@
 - hosts: haproxy
   roles:
     - install_haproxy
+    - install_keepalived
